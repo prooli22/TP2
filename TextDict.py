@@ -1,4 +1,13 @@
+'''
+    Fichier : TextDict
+    Projet  : TP2
+    Cours   : IFT2015 - Stuctures de données
+    Auteurs : Olivier Provost (20101738)
+              Moïka Sauvé     (20090119)
+'''
+
 PONC = ["!",'"',"'",")","(",",",".",";",":","?", "-", "_"]
+from Dictionnaire import Dictionnaire
 
 class TextDict:
     """
@@ -6,6 +15,7 @@ class TextDict:
     """
 
     def __init__(self):
+        self._dictionnaire = Dictionnaire()
     	######## VOUS INITIALISEZ VOTRE DICTIONNAIRE ICI #######################
 
 
@@ -20,7 +30,16 @@ class TextDict:
                 line = line.rstrip()
                 if line == '': continue
                 words = self.treatLine(line)
+
                 ####### À COMPLÉTER ############################################
+                if(prevword is not None):
+                    self._dictionnaire[str(prevword + " " + words[0])] = 1
+
+                for i in range(len(words) - 1):
+                    #print(str(words[i] + " " + words[i + 1]))
+                    self._dictionnaire[str(words[i] + " " + words[i + 1])] = 1
+
+                prevword = words[-1]
 
 
 
