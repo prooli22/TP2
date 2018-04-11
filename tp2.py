@@ -1,23 +1,33 @@
+
 '''
-    Fichier : TP2
-    Projet  : TP2
-    Cours   : IFT2015 - Stuctures de données
-    Auteurs : Olivier Provost (20101738)
-              Moïka Sauvé     (20090119)
+  Fichier : Main
+  Projet  : TP2
+  Cours   : IFT2015 - Stuctures de données
+  Auteurs : Olivier Provost (20101738)
+            Moïka Sauvé     (20090119)
 '''
+
 
 from TextDict import TextDict
 from Dictionnaire import Dictionnaire
+import time
 
 def main():
 
-    #textDict = TextDict()
+    TEXTES = ["balzac", "hugo", "segur", "verne", "voltaire", "zola"]
+    distances = {}
 
-    textDict = TextDict()
+    mystere = TextDict()
+    mystere.treatText("./textes/mystere.txt")
 
-    textDict.treatText("./textes/balzac.txt")
+    for texte in TEXTES:
+        textDict = TextDict()
+        avant = time.time()
+        textDict.treatText("./textes/" + texte + ".txt")
+        distances[texte] = textDict.distance(mystere)
+        apres = time.time()
+        print(texte, "->", apres - avant, "secondes, distance :", distances[texte])
 
-    print(textDitc._dictionnaire)
-
+    #print(textDict._dictionnaire)
 
 main()

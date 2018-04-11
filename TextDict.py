@@ -1,13 +1,16 @@
+
 '''
-    Fichier : TextDict
-    Projet  : TP2
-    Cours   : IFT2015 - Stuctures de données
-    Auteurs : Olivier Provost (20101738)
-              Moïka Sauvé     (20090119)
+  Fichier : TextDict
+  Projet  : TP2
+  Cours   : IFT2015 - Stuctures de données
+  Auteurs : Olivier Provost (20101738)
+            Moïka Sauvé     (20090119)
 '''
 
 PONC = ["!",'"',"'",")","(",",",".",";",":","?", "-", "_"]
+
 from Dictionnaire import Dictionnaire
+import math
 
 class TextDict:
     """
@@ -16,7 +19,25 @@ class TextDict:
 
     def __init__(self):
         self._dictionnaire = Dictionnaire()
-    	######## VOUS INITIALISEZ VOTRE DICTIONNAIRE ICI #######################
+
+
+    def distance(self, mystere):
+
+        frequence = 0
+        nbDoublet = 0
+
+        for indexD in self._dictionnaire.T:
+            if(indexD is not None):
+                for itemD in indexD:
+                    for indexM in mystere._dictionnaire.T:
+                        if(indexM is not None):
+                            for itemM in indexM:
+                                if(itemD.cle == itemM.cle):
+                                    frequence += math.pow(itemD.valeur - itemM.valeur, 2)
+                                    nbDoublet += 1
+
+        return math.sqrt(frequence / nbDoublet)
+
 
 
     def treatText(self, filename):
@@ -31,16 +52,15 @@ class TextDict:
                 if line == '': continue
                 words = self.treatLine(line)
 
-                ####### À COMPLÉTER ############################################
-                if(prevword is not None):
-                    self._dictionnaire[str(prevword + " " + words[0])] = 1
+                if len(words) > 1 :
+                    if(prevword is not None):
+                        self._dictionnaire[str(prevword + " " + words[0])] = 1
 
-                for i in range(len(words) - 1):
-                    #print(str(words[i] + " " + words[i + 1]))
-                    self._dictionnaire[str(words[i] + " " + words[i + 1])] = 1
+                    for i in range(len(words) - 1):
+                        #print(str(words[i] + " " + words[i + 1]))
+                        self._dictionnaire[str(words[i] + " " + words[i + 1])] = 1
 
-                prevword = words[-1]
-
+                    prevword = words[-1]
 
 
     def treatLine(self, line):
