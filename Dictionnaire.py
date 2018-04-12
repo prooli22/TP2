@@ -7,8 +7,6 @@
             Moïka Sauvé     (20090119)
 '''
 
-from random import randrange
-from math import pow
 
 class Signature:
 

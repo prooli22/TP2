@@ -10,7 +10,7 @@
 PONC = ["!",'"',"'",")","(",",",".",";",":","?", "-", "_"]
 
 from Dictionnaire import Dictionnaire
-import math
+
 
 class TextDict:
     """
