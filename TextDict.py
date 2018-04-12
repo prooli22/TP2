@@ -18,26 +18,7 @@ class TextDict:
     """
 
     def __init__(self):
-        self._dictionnaire = Dictionnaire()
-
-
-    def distance(self, mystere):
-
-        frequence = 0
-        nbDoublet = 0
-
-        for indexD in self._dictionnaire.T:
-            if(indexD is not None):
-                for itemD in indexD:
-                    for indexM in mystere._dictionnaire.T:
-                        if(indexM is not None):
-                            for itemM in indexM:
-                                if(itemD.cle == itemM.cle):
-                                    frequence += math.pow(itemD.valeur - itemM.valeur, 2)
-                                    nbDoublet += 1
-
-        return math.sqrt(frequence / nbDoublet)
-
+        self.dictionnaire = Dictionnaire()
 
 
     def treatText(self, filename):
@@ -54,11 +35,11 @@ class TextDict:
 
                 if len(words) > 1 :
                     if(prevword is not None):
-                        self._dictionnaire[str(prevword + " " + words[0])] = 1
+                        self.dictionnaire[str(prevword + " " + words[0])] = 1
 
                     for i in range(len(words) - 1):
                         #print(str(words[i] + " " + words[i + 1]))
-                        self._dictionnaire[str(words[i] + " " + words[i + 1])] = 1
+                        self.dictionnaire[str(words[i] + " " + words[i + 1])] = 1
 
                     prevword = words[-1]
 
