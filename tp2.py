@@ -14,7 +14,42 @@ import time
 
 
 def distance(d1, d2):
-    pass
+    #On choisi le plus petit dictionnaire pour le comparer avec le plus gros 
+    plusPetit = null
+    plusGrand = null
+    x = []
+    y = []
+    sommeX = 0
+    sommeY = 0
+    distance = 0
+
+    if (d1._n < d2._n):
+        plusPetit = d1
+        plusGrand = d2
+    else:
+        plusPetit = d2
+        plusGrand = d1
+    
+    for (item in plusPetit): 
+        if item is not None:
+            for element in item:
+                elementG = plusGrand[element.cle]
+                if (elementG and elementG.cle == element.cle):
+                    x.add(element.valeur)
+                    sommeX += x
+                    y.add(elementG.valeur)
+                    sommeY += y
+    
+    for i in range(len(x)):
+        distance += (x[i] / sommeX - y[i]/ sommeY) ** 2
+
+    distance = distance / len(x)
+    return math.sqrt(distance)
+
+
+
+
+
         # frequence = 0
         # nbDoublet = 0
 
