@@ -51,7 +51,7 @@ def main():
     for texte in TEXTES:
         textDict = TextDict()
         #avant = time.time()
-        textDict.treatText("./textes/" + texte + ".txt")
+        textDict.treatText("./textes/" + texte.lower() + ".txt")
         #distances[texte] = textDict.distance(mystere)
         #apres = time.time()
         #print(texte, "->", apres - avant, "secondes, distance :", distances[texte], ", collisions :", textDict.dictionnaire.collisions)
@@ -60,7 +60,7 @@ def main():
 
     apres = time.time()
 
-    print("Temps total :", apres - avant)
-        
+    print("Temps total :", apres - avant, "secondes")
+
 
 main()
