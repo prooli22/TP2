@@ -56,6 +56,14 @@ def main():
     mystere = TextDict()
     mystere.treatText("./textes/mystere.txt")
 
+    # none = 0
+    # for i in range(len(mystere.dictionnaire.T)):
+    #     if(mystere.dictionnaire.T[i] is not None):
+    #         print(i, ":", len(mystere.dictionnaire.T[i]), "éléments")
+    #     else:
+    #         none += 1
+
+    # print(none, "élements None sur", len(mystere._dictionnaire.T))
 
     for texte in TEXTES:
         textDict = TextDict()
@@ -63,19 +71,9 @@ def main():
         textDict.treatText("./textes/" + texte.lower() + ".txt")
         distances[texte] = distance(mystere.dictionnaire, textDict.dictionnaire)
         apres = time.time()
-        #print(texte, "->", apres - avant, "secondes, distance :", distances[texte])
-
-    auteur = TEXTES[0]
-    minimum = distances[auteur]
-
-    for (texte, dist) in distances.items():
-        print(texte, dist)
-
-        if(dist < minimum):
-            minimum = distance
-            auteur = texte
-
-    print("Auteur du texte mystère :", auteur)
+        print(texte, "->", apres - avant, "secondes, distance :", distances[texte], ", collisions :", textDict.dictionnaire.collisions)
+        #print(texte, "->", apres - avant, "secondes, collisions :", textDict.dictionnaire.collisions)
+        #print(texte, "-> Collisions :", textDict.dictionnaire.collisions)
 
     apresAll = time.time()
 
