@@ -9,6 +9,7 @@
 
 PONC = ["!",'"',"'",")","(",",",".",";",":","?", "-", "_"]
 
+
 from Dictionnaire import Dictionnaire
 
 

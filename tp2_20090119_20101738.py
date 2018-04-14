@@ -9,7 +9,6 @@
 
 
 from TextDict import TextDict
-import time
 import math
 
 
@@ -50,19 +49,13 @@ def main():
     TEXTES = ["Balzac", "Hugo", "Segur", "Verne", "Voltaire", "Zola"]
     distances = {}
 
-    avantAll = time.time()
-
     mystere = TextDict()
-    mystere.treatText("./textes/mystere.txt")
-
+    mystere.treatText("./mystere.txt")
 
     for texte in TEXTES:
         textDict = TextDict()
-        avant = time.time()
-        textDict.treatText("./textes/" + texte.lower() + ".txt")
+        textDict.treatText("./" + texte.lower() + ".txt")
         distances[texte] = distance(mystere.dictionnaire, textDict.dictionnaire)
-        apres = time.time()
-        #print(texte, "->", apres - avant, "secondes, distance :", distances[texte])
 
     auteur = TEXTES[0]
     minimum = distances[auteur]
@@ -75,10 +68,6 @@ def main():
             auteur = texte
 
     print("Auteur du texte mystère :", auteur)
-
-    apresAll = time.time()
-
-    print("Temps total :", apresAll - avantAll, "secondes")
 
 
 main()
